@@ -397,7 +397,7 @@ const ProviderPortal: React.FC = () => {
     { id: 'verification', label: 'Provider Verification', icon: UserCheck },
     { id: 'request-pa', label: 'Request PA Code', icon: FileText },
     { id: 'submit-claim', label: 'Submit Claim', icon: Upload },
-    { id: 'pa-history', label: 'PA Code History', icon: History },
+    { id: 'pa-history', label: 'PA Code History', icon: History }
     { id: 'claim-history', label: 'Claim History', icon: FileText },
     { id: 'offline-mode', label: 'Offline Mode', icon: Wifi }
   ];
@@ -532,35 +532,7 @@ const ProviderPortal: React.FC = () => {
               {/* Dashboard Tab */}
               {activeTab === 'dashboard' && (
                 <div className="space-y-6">
-                  {/* Hero Section with Background */}
-                  <div 
-                    className="relative bg-gradient-to-r from-eagle-600 to-naija-600 rounded-2xl p-8 text-white overflow-hidden"
-                    style={{
-                      backgroundImage: `linear-gradient(rgba(34, 197, 94, 0.9), rgba(14, 165, 233, 0.9)), url('/ehl 1.jpeg')`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  >
-                    <div className="relative z-10">
-                      <h2 className="text-3xl font-bold mb-2">Welcome to Eagle HMO Provider Portal</h2>
-                      <p className="text-xl opacity-90">Healthcare on Eagle's Wing - Streamlined Provider Services</p>
-                    </div>
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
-                  </div>
-
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div className="bg-white rounded-xl shadow-lg p-6 border border-eagle-100">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm text-gray-600">PA Codes Generated</p>
-                          <p className="text-2xl font-bold text-eagle-600">{paHistory.length}</p>
-                        </div>
-                        <FileText className="w-8 h-8 text-eagle-600" />
-                      </div>
-                    </div>
-                    
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-gradient-to-br from-eagle-50 to-eagle-100 rounded-lg p-6">
                       <div className="flex items-center justify-between">
                         <div>
@@ -1405,10 +1377,138 @@ const ProviderPortal: React.FC = () => {
                       </div>
                     </div>
                   </div>
+          {/* PA Code History Tab */}
+          {activeTab === 'pa-history' && (
+            <div className="space-y-6">
+              <div className="bg-white rounded-xl shadow-lg p-6">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-eagle-600 to-naija-600 rounded-xl flex items-center justify-center">
+                    <History className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-gray-900">PA Code History</h2>
+                    <p className="text-gray-600">View all PA codes generated for your facility</p>
+                  </div>
                 </div>
+                </div>
+                <div className="space-y-4">
+                  {paHistory.map((pa) => (
+                    <div key={pa.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center">
+                            <FileText className="w-6 h-6 text-sky-600" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-gray-900">{pa.enrolleeName}</h3>
+                            <p className="text-gray-600">Enrollee ID: {pa.enrolleeId}</p>
+                            <div className="flex items-center space-x-2 mt-1">
+                              <span className="font-mono text-sm bg-gray-100 px-2 py-1 rounded">
+                                {pa.id}
+                              </span>
+                              <button
+                                onClick={() => navigator.clipboard.writeText(pa.id)}
+                                className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                              >
+                                <Copy className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="text-right">
+                          <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                            pa.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                          }`}>
+                            {pa.status.toUpperCase()}
+                          </span>
+                          {pa.claimSubmitted && (
+                            <div className="mt-2">
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${getClaimStatusColor(pa.claimStatus)}`}>
+                                Claim: {pa.claimStatus?.toUpperCase()}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
               )}
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                        <div>
+                          <p className="text-sm text-gray-600">Diagnosis</p>
+                          <p className="font-medium text-gray-900">{pa.diagnosis}</p>
+                          <p className="text-xs text-gray-500">{pa.icd10Code}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-600">Generated By</p>
+                          <p className="font-medium text-gray-900">{pa.generatedBy}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-600">Date Generated</p>
+                          <p className="font-medium text-gray-900">{pa.dateGenerated}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-600">Estimated Cost</p>
+                          <p className="font-medium text-gray-900">₦{pa.estimatedCost.toLocaleString()}</p>
+                        </div>
+                      </div>
             </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <p className="text-sm text-gray-600">Claim Status</p>
+                            <p className="font-medium text-gray-900">
+                              {pa.claimSubmitted ? (
+                                <span className="flex items-center space-x-2">
+                                  <CheckCircle className="w-4 h-4 text-green-600" />
+                                  <span>Claim Submitted ({pa.claimId})</span>
+                                </span>
+                              ) : (
+                                <span className="flex items-center space-x-2">
+                                  <Clock className="w-4 h-4 text-yellow-600" />
+                                  <span>No Claim Submitted</span>
+                                </span>
+                              )}
+                            </p>
+                          </div>
+                          <div className="flex justify-end space-x-2">
+                            {!pa.claimSubmitted && pa.status === 'active' && (
+                              <button
+                                onClick={() => {
+                                  setClaimData({
+                                    ...claimData,
+                                    paCode: pa.id,
+                                    enrolleeId: pa.enrolleeId,
+                                    enrolleeName: pa.enrolleeName,
+                                    icd10Code: pa.icd10Code,
+                                    diagnosis: pa.diagnosis
+                                  });
+                                  setActiveTab('submit-claim');
+                                }}
+                                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                              >
+                                Submit Claim
+                              </button>
+                            )}
+                            <button className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors text-sm">
+                              View Details
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
           </div>
+                  {paHistory.length === 0 && (
+                    <div className="text-center py-12">
+                      <History className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">No PA Codes Yet</h3>
+                      <p className="text-gray-600">PA codes generated by Eagle HMO will appear here</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

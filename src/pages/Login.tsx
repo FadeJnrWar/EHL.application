@@ -206,6 +206,23 @@ const Login = () => {
                 <p className="text-sm text-gray-500">
                   Need help? Contact IT Support
                 </p>
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm text-gray-600">New to Eagle HMO?</p>
+                  <div className="flex flex-col space-y-2">
+                    <a
+                      href="/provider-registration"
+                      className="text-sm text-eagle-600 hover:text-eagle-700 font-medium hover:underline transition-colors"
+                    >
+                      Register as Healthcare Provider
+                    </a>
+                    <a
+                      href="/enrollee-registration"
+                      className="text-sm text-naija-600 hover:text-naija-700 font-medium hover:underline transition-colors"
+                    >
+                      Register as Individual Member
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

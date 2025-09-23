@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Building2, Phone, Mail, MapPin, Star, AlertTriangle, Edit, Trash2, FileText } from 'lucide-react';
+import { Building2, Phone, Mail, MapPin, Star, AlertTriangle, Edit, Trash2, FileText, UserPlus } from 'lucide-react';
 
 interface ProviderListProps {
   searchQuery: string;

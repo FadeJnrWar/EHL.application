@@ -38,6 +38,8 @@ function App() {
           <Router>
             <Routes>
               <Route path="/login" element={<Login />} />
+              <Route path="/provider-registration" element={<ProviderRegistration />} />
+              <Route path="/enrollee-registration" element={<EnrolleeRegistration />} />
               <Route path="/provider" element={
                 <ProtectedRoute>
                   <ProviderPortal />
