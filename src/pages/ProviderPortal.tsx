@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { Shield, FileText, BarChart3, Clock, CheckCircle, AlertTriangle, Building2, User, Calendar, DollarSign, Upload, Plus, Trash2, Calculator, Copy, Check, Eye, EyeOff, Save, X, Search, Wifi, WifiOff, Package, Edit3, UserCheck, History, Phone, Mail, MapPin } from 'lucide-react';
 import { useOffline } from '../contexts/OfflineContext';
 import { LogOut, Building2, FileText, Upload, Clock, CheckCircle, User, Shield, Bell, Settings, Wifi, WifiOff, Database, AlertTriangle, Power, Info, RefreshCw as Sync, Plus, Trash2, Calculator, Copy, Check, Edit3, Save, X, Paperclip } from 'lucide-react';
 import OfflineBanner from '../components/Common/OfflineBanner';
@@ -213,6 +213,62 @@ const ProviderPortal: React.FC = () => {
   const [copiedPA, setCopiedPA] = useState(false);
 
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [verificationData, setVerificationData] = useState({
+    providerName: '',
+    contactPerson: '',
+    email: '',
+    phone: '',
+    address: '',
+    licenseNumber: '',
+    specialization: '',
+    bankName: '',
+    accountNumber: '',
+    accountName: ''
+  });
+  const [paHistory, setPaHistory] = useState([
+    {
+      id: 'PA-1736789456789-123',
+      enrolleeId: 'ENR-12345',
+      enrolleeName: 'Adebayo Olumide',
+      diagnosis: 'Plasmodium falciparum malaria',
+      icd10Code: 'B50.9',
+      dateGenerated: '2025-01-10',
+      generatedBy: 'Winifred Festus (Call Center)',
+      estimatedCost: 45000,
+      status: 'active',
+      claimSubmitted: true,
+      claimId: 'CLM-001',
+      claimStatus: 'approved'
+    },
+    {
+      id: 'PA-1736789356789-456',
+      enrolleeId: 'ENR-67890',
+      enrolleeName: 'Fatima Abubakar',
+      diagnosis: 'Type 2 diabetes mellitus',
+      icd10Code: 'E11.9',
+      dateGenerated: '2025-01-11',
+      generatedBy: 'Ajayi Seyi (Call Center)',
+      estimatedCost: 28500,
+      status: 'active',
+      claimSubmitted: true,
+      claimId: 'CLM-002',
+      claimStatus: 'approved'
+    },
+    {
+      id: 'PA-1736789256789-789',
+      enrolleeId: 'ENR-11111',
+      enrolleeName: 'Chinedu Okafor',
+      diagnosis: 'Essential hypertension',
+      icd10Code: 'I10',
+      dateGenerated: '2025-01-09',
+      generatedBy: 'Winifred Festus (Call Center)',
+      estimatedCost: 85000,
+      status: 'expired',
+      claimSubmitted: true,
+      claimId: 'CLM-003',
+      claimStatus: 'rejected'
+    }
+  ]);
   const [claims, setClaims] = useState([
     {
       id: 'CLM-001',
@@ -338,15 +394,48 @@ const ProviderPortal: React.FC = () => {
 
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: Building2 },
+    { id: 'verification', label: 'Provider Verification', icon: UserCheck },
     { id: 'request-pa', label: 'Request PA Code', icon: FileText },
     { id: 'submit-claim', label: 'Submit Claim', icon: Upload },
+    { id: 'pa-history', label: 'PA Code History', icon: History }
     { id: 'claim-history', label: 'Claim History', icon: FileText },
     { id: 'offline-mode', label: 'Offline Mode', icon: Wifi }
   ];
 
+  const handleVerificationSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    alert('Provider verification request submitted! Eagle HMO will review and contact you within 2-3 business days.');
+  };
+
+  const getClaimStatusColor = (status: string) => {
+    switch (status) {
+      case 'approved': return 'bg-green-100 text-green-800';
+      case 'pending': return 'bg-yellow-100 text-yellow-800';
+      case 'rejected': return 'bg-red-100 text-red-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-eagle-50 via-naija-50 to-gold-50">
       <OfflineBanner />
+      
+      // Update PA history to show claim was submitted
+      setPaHistory(prev => prev.map(pa => 
+        pa.id === claimData.paCode 
+              <img 
+                src="/ehl.jpeg" 
+                alt="Eagle HMO Logo" 
+                className="w-12 h-12 rounded-xl shadow-lg object-contain bg-white p-1"
+                onError={(e) => {
+                  // Fallback to icon if image fails to load
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+              <div className="w-12 h-12 bg-gradient-to-br from-eagle-600 to-naija-600 rounded-xl flex items-center justify-center shadow-lg hidden">
+                <Shield className="w-7 h-7 text-white" />
+              </div>
       
       {/* Header */}
       <header className="bg-gradient-to-r from-white to-eagle-50/50 shadow-lg border-b border-eagle-200 px-6 py-4">
