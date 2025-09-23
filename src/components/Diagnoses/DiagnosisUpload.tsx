@@ -109,6 +109,7 @@ const DiagnosisUpload: React.FC = () => {
       updateEnrolleePhone(formData.enrolleeId, formData.enrolleePhone);
     }
   };
+
   const commonServices = [
     'Consultation',
     'Laboratory Test',
@@ -703,7 +704,7 @@ const DiagnosisUpload: React.FC = () => {
         </div>
         <button
           type="submit"
-          disabled={isSubmitting || !formData.enrolleePhone || diagnoses.some(d => !d.icd10Code || !d.description) || treatments.some(t => !t.service || t.unitPrice <= 0)}
+          disabled={isSubmitting || !formData.enrolleePhone || diagnoses.some(d => !d.icd10Code) || treatments.some(t => !t.service || t.unitPrice <= 0)}
           className="w-full bg-sky-600 text-white py-3 rounded-lg hover:bg-sky-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium flex items-center justify-center space-x-2"
         >
           {isSubmitting ? (

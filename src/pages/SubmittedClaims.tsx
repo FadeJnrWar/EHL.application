@@ -31,6 +31,8 @@ interface Claim {
   enrolleeName: string;
   enrolleeCompany: string;
   enrolleePlan: string;
+  enrolleeGender: string;
+  enrolleeAge: number;
   providerId: string;
   providerName: string;
   submissionDate: string;

@@ -714,7 +714,8 @@ const ClaimsQueue: React.FC<ClaimsQueueProps> = ({ filters }) => {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">{claim.enrolleeName}</h3>
                   <p className="text-gray-600">Claim: {claim.id} | PA: {claim.paCode}</p>
-                  <p className="text-sm text-gray-500">Enrollee: {claim.enrolleeId} | Company: {claim.enrolleeCompany}</p>
+                  <p className="text-sm text-gray-500">Enrollee: {claim.enrolleeId} | {claim.enrolleeGender}, {claim.enrolleeAge}y</p>
+                  <p className="text-sm text-gray-500">Company: {claim.enrolleeCompany}</p>
                 </div>
               </div>
               

@@ -133,8 +133,8 @@ const EligibilityResults: React.FC<EligibilityResultsProps> = ({ results, isLoad
               <div className="flex items-center space-x-3">
                 <User className="w-4 h-4 text-gray-400" />
                 <div>
-                  <p className="text-sm text-gray-600">Demographics</p>
-                  <p className="font-medium text-gray-900">{results.gender}, Age {results.age}</p>
+                  <p className="text-sm text-gray-600">Patient Details</p>
+                  <p className="font-medium text-gray-900">{results.gender}, {results.age} years old</p>
                   <p className="text-sm text-gray-500">DOB: {results.dateOfBirth}</p>
                 </div>
               </div>
@@ -147,9 +147,9 @@ const EligibilityResults: React.FC<EligibilityResultsProps> = ({ results, isLoad
                   <p className="text-sm text-gray-500">{results.email}</p>
                 </div>
               </div>
-              </div>
             </div>
           </div>
+        </div>
 
           <div className="space-y-4">
             <h3 className="text-lg font-medium text-gray-900">Benefit Summary</h3>
