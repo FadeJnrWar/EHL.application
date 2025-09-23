@@ -79,6 +79,7 @@ const navItems: NavItem[] = [
     children: [
       { path: '/enrollment/members', icon: Users, label: 'Member Registration' },
       { path: '/enrollment/plans', icon: CreditCard, label: 'Plan Management' },
+      { path: '/enrollment/management', icon: UserPlus, label: 'Enrollment Management' },
     ]
   },
 

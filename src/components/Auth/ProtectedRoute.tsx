@@ -35,10 +35,24 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     }
   }
 
+  // Redirect enrollees to their portal
+  if (user.role === 'Enrollee') {
+    // Only redirect if not already on enrollee route
+    if (!location.pathname.startsWith('/enrollee')) {
+      return <Navigate to="/enrollee" replace />;
+    }
+  }
+
   // Redirect non-providers away from provider portal (except Super Admin)
   if (user.role !== 'Provider' && !user.permissions?.includes('all') && location.pathname.startsWith('/provider')) {
     return <Navigate to="/" replace />;
   }
+
+  // Redirect non-enrollees away from enrollee portal (except Super Admin)
+  if (user.role !== 'Enrollee' && !user.permissions?.includes('all') && location.pathname.startsWith('/enrollee')) {
+    return <Navigate to="/" replace />;
+  }
+
   return <>{children}</>;
 };
 

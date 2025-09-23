@@ -67,6 +67,7 @@ function App() {
                 <Route path="providers/performance" element={<ProviderPerformance />} />
                 <Route path="enrollment/members" element={<MemberRegistration />} />
                 <Route path="enrollment/plans" element={<PlanManagement />} />
+                <Route path="enrollment/management" element={<EnrollmentManagement />} />
                 <Route path="finance/billing" element={<Billing />} />
                 <Route path="finance/reports" element={<FinancialReports />} />
                 <Route path="underwriting/risk" element={<RiskAssessment />} />

@@ -94,6 +94,25 @@ const users = [
     role: 'Provider',
     department: 'Provider Network',
     permissions: ['provider-portal']
+  },
+  // Enrollee Accounts
+  {
+    id: '8',
+    name: 'Adebayo Olumide',
+    email: 'adebayo.olumide@zenithbank.com',
+    password: 'enrollee123',
+    role: 'Enrollee',
+    department: 'Member',
+    permissions: ['enrollee-portal']
+  },
+  {
+    id: '9',
+    name: 'Fatima Abubakar',
+    email: 'fatima.abubakar@nnpc.gov.ng',
+    password: 'enrollee123',
+    role: 'Enrollee',
+    department: 'Member',
+    permissions: ['enrollee-portal']
   }
 ];
 
