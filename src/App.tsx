@@ -28,6 +28,8 @@ import Compliance from './pages/Compliance';
 import AuditTrail from './pages/AuditTrail';
 import SubmittedClaims from './pages/SubmittedClaims';
 import ProviderPortal from './pages/ProviderPortal';
+import ProviderRegistration from './pages/ProviderRegistration';
+import EnrolleeRegistration from './pages/EnrolleeRegistration';
 import OfflineMode from './pages/OfflineMode';
 
 function App() {
