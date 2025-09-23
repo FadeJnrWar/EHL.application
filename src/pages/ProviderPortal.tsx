@@ -397,7 +397,7 @@ const ProviderPortal: React.FC = () => {
     { id: 'verification', label: 'Provider Verification', icon: UserCheck },
     { id: 'request-pa', label: 'Request PA Code', icon: FileText },
     { id: 'submit-claim', label: 'Submit Claim', icon: Upload },
-    { id: 'pa-history', label: 'PA Code History', icon: History }
+    { id: 'pa-history', label: 'PA Code History', icon: History },
     { id: 'claim-history', label: 'Claim History', icon: FileText },
     { id: 'offline-mode', label: 'Offline Mode', icon: Wifi }
   ];
@@ -532,7 +532,35 @@ const ProviderPortal: React.FC = () => {
               {/* Dashboard Tab */}
               {activeTab === 'dashboard' && (
                 <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Hero Section with Background */}
+                  <div 
+                    className="relative bg-gradient-to-r from-eagle-600 to-naija-600 rounded-2xl p-8 text-white overflow-hidden"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(34, 197, 94, 0.9), rgba(14, 165, 233, 0.9)), url('/ehl 1.jpeg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  >
+                    <div className="relative z-10">
+                      <h2 className="text-3xl font-bold mb-2">Welcome to Eagle HMO Provider Portal</h2>
+                      <p className="text-xl opacity-90">Healthcare on Eagle's Wing - Streamlined Provider Services</p>
+                    </div>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+                  </div>
+
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div className="bg-white rounded-xl shadow-lg p-6 border border-eagle-100">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-gray-600">PA Codes Generated</p>
+                          <p className="text-2xl font-bold text-eagle-600">{paHistory.length}</p>
+                        </div>
+                        <FileText className="w-8 h-8 text-eagle-600" />
+                      </div>
+                    </div>
+                    
                     <div className="bg-gradient-to-br from-eagle-50 to-eagle-100 rounded-lg p-6">
                       <div className="flex items-center justify-between">
                         <div>
