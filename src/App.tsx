@@ -31,6 +31,7 @@ import ProviderPortal from './pages/ProviderPortal';
 import ProviderRegistration from './pages/ProviderRegistration';
 import EnrolleeRegistration from './pages/EnrolleeRegistration';
 import OfflineMode from './pages/OfflineMode';
+import EnrollmentManagement from './pages/EnrollmentManagement';
 
 function App() {
   return (
