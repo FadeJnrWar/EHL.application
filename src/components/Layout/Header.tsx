@@ -50,10 +50,10 @@ const Header: React.FC = () => {
           
           <button 
             onClick={logout}
-            className="p-2 text-gray-400 hover:text-red-600 transition-colors rounded-lg hover:bg-red-50 flex items-center space-x-1"
+            className="p-2 text-gray-400 hover:text-red-600 transition-colors rounded-lg hover:bg-red-50"
+            title="Logout"
           >
             <LogOut className="w-5 h-5" />
-            <span className="text-sm">Logout</span>
           </button>
         </div>
       </div>

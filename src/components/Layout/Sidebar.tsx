@@ -18,7 +18,8 @@ import {
   FileCheck,
   Scale,
   UserPlus,
-  Wifi
+  Wifi,
+  User
 } from 'lucide-react';
 
 interface NavItem {

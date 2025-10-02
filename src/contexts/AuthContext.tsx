@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { validateEnrolleeLogin } from '../data/enrolleeCredentials';
 
 interface User {
   id: string;
@@ -128,7 +129,25 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // Simulate API call
       await new Promise((resolve, reject) => {
         setTimeout(() => {
-          const foundUser = users.find(u => u.email === email && u.password === password);
+          // First check regular users
+          let foundUser = users.find(u => u.email === email && u.password === password);
+          
+          // If not found, check enrollee credentials
+          if (!foundUser) {
+            const enrolleeCredentials = validateEnrolleeLogin(email, password);
+            if (enrolleeCredentials) {
+              foundUser = {
+                id: enrolleeCredentials.id,
+                name: enrolleeCredentials.name,
+                email: enrolleeCredentials.email,
+                password: enrolleeCredentials.password,
+                role: 'Enrollee',
+                department: 'Member',
+                permissions: ['enrollee-portal']
+              };
+            }
+          }
+          
           if (foundUser) {
             const { password: _, ...userWithoutPassword } = foundUser;
             // Clear any existing session data

@@ -30,6 +30,7 @@ import SubmittedClaims from './pages/SubmittedClaims';
 import ProviderPortal from './pages/ProviderPortal';
 import ProviderRegistration from './pages/ProviderRegistration';
 import EnrolleeRegistration from './pages/EnrolleeRegistration';
+import EnrolleePortal from './pages/EnrolleePortal';
 import OfflineMode from './pages/OfflineMode';
 import EnrollmentManagement from './pages/EnrollmentManagement';
 
@@ -46,6 +47,11 @@ function App() {
               <Route path="/provider" element={
                 <ProtectedRoute>
                   <ProviderPortal />
+                </ProtectedRoute>
+              } />
+              <Route path="/enrollee" element={
+                <ProtectedRoute>
+                  <EnrolleePortal />
                 </ProtectedRoute>
               } />
               <Route path="/" element={

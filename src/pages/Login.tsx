@@ -199,14 +199,17 @@ const Login = () => {
                   >
                     Provider Login (LUTH)
                   </button>
-                  <div className="mt-2">
-                    <button
-                      onClick={handleEnrolleeLogin}
-                      className="text-sm text-gold-600 hover:text-gold-700 font-medium hover:underline transition-colors"
-                    >
-                      Enrollee Login (Demo)
-                    </button>
-                  </div>
+                </div>
+                <div className="mt-2">
+                  <button
+                    onClick={() => setCredentials({
+                      email: 'adebayo.olumide@zenithbank.com',
+                      password: 'enrollee123'
+                    })}
+                    className="text-sm text-gold-600 hover:text-gold-700 font-medium hover:underline transition-colors"
+                  >
+                    Enrollee Login (Demo)
+                  </button>
                 </div>
               </div>
 
