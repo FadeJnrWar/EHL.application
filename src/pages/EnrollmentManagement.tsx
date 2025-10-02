@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Users, Upload, Search, Edit3, CheckCircle, XCircle, AlertTriangle, X, CreditCard, FileText } from 'lucide-react';
+import { Users, Upload, Search, CreditCard as Edit3, CheckCircle, XCircle, AlertTriangle, X, CreditCard, FileText } from 'lucide-react';
 import { useOffline } from '../contexts/OfflineContext';
 import BulkUploadModal from '../components/Enrollment/BulkUploadModal';
 import { createClient } from '@supabase/supabase-js';
